@@ -1,10 +1,13 @@
 from flask import Flask
 app = Flask(__name__)
 book_file = "book.json"
+index_file = "index.html"
 
 @app.route('/')
 def hello_world():
-    return 'Hello, World!'
+    with open(index_file, "r") as f:
+        data = f.read()
+        return data
 
 @app.route('/getbook')
 def get_book():

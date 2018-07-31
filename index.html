@@ -1,9 +1,16 @@
+<!DOCTYPE html>
 <html>
   <head>
     <title>Web Phone Book</title>
   </head>
   <body>
-    <div><input type="text"></div>
-    <div></div>
+    <script type="text/javascript">
+      function filter(value) {
+        document.getElementById('phonebook').innerHTML = value;
+	  }
+    </script>
+    <div><input type="text" onkeydown="filter(this.value)" onpaste="filter(this.value)" oninput="filter(this.value)"></div>
+	<hr>
+    <div id="phonebook"></div>
   </body>
 </html>

@@ -14,19 +14,23 @@
 				if (xhr.status != 200) {
 					alert( xhr.status + ': ' + xhr.statusText );
 				} else {
-					json = xhr.responseText ;
+					json = JSON.parse(xhr.responseText) ;
 				};
 				filter();
 			};
 			function filter(value) {
 				var pbk_table = '<table border=1>';
 				<!-- loop over whole json -->
-				json = JSON.parse(json);
-				name = json.phonebook[0].name;
-				phone = json.phonebook[0].phone;
-				<!-- if have filter, print only suitable names -->
-				pbk_table += '<tr><td>'+name+'</td><td>'+phone+'</td></tr><';
-				pbk_table += '/table>';
+				for(var i in json.phonebook) {
+					var name = json.phonebook[i].name;
+					var phone = json.phonebook[i].phone;
+					<!-- if have filter, print only suitable names -->
+					var regexp = new RegExp(value, "g");
+					if(name.match(regexp) || !value) {
+						pbk_table += '<tr><td>'+name+'</td><td>'+phone+'</td></tr>';
+					};
+				};
+				pbk_table += '</table>';
 		        document.getElementById('phonebook').innerHTML = pbk_table;
 			};
 	    </script>

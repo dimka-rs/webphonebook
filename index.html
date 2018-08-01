@@ -19,13 +19,13 @@
 				filter();
 			};
 			function filter(value) {
-				var pbk_table = '<table border=1>';
+				var pbk_table = '<table cellpadding=10>';
 				<!-- loop over whole json -->
 				for(var i in json.phonebook) {
 					var name = json.phonebook[i].name;
 					var phone = json.phonebook[i].phone;
 					<!-- if have filter, print only suitable names -->
-					var regexp = new RegExp(value, "g");
+					var regexp = new RegExp(value, "gi");
 					if(name.match(regexp) || !value) {
 						pbk_table += '<tr><td>'+name+'</td><td>'+phone+'</td></tr>';
 					};

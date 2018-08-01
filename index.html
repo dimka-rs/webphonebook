@@ -8,7 +8,7 @@
 			var json;
 			function onload() {
 				var xhr = new XMLHttpRequest();
-				var book_url = "http://localhost:5000/getbook";
+				var book_url = "/getbook";
 				xhr.open('GET', book_url, false);
 				xhr.send();
 				if (xhr.status != 200) {

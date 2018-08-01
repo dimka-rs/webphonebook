@@ -1,16 +1,37 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Web Phone Book</title>
-  </head>
-  <body>
-    <script type="text/javascript">
-      function filter(value) {
-        document.getElementById('phonebook').innerHTML = value;
-	  }
-    </script>
-    <div><input type="text" onkeydown="filter(this.value)" onpaste="filter(this.value)" oninput="filter(this.value)"></div>
-	<hr>
-    <div id="phonebook"></div>
-  </body>
+	<head>
+		<title>Web Phone Book</title>
+	</head>
+	<body onload="onload()">
+		<script type="text/javascript">
+			var json;
+			function onload() {
+				var xhr = new XMLHttpRequest();
+				var book_url = "http://localhost:5000/getbook";
+				xhr.open('GET', book_url, false);
+				xhr.send();
+				if (xhr.status != 200) {
+					alert( xhr.status + ': ' + xhr.statusText );
+				} else {
+					json = xhr.responseText ;
+				};
+				filter();
+			};
+			function filter(value) {
+				var pbk_table = '<table border=1>';
+				<!-- loop over whole json -->
+				json = JSON.parse(json);
+				name = json.phonebook[0].name;
+				phone = json.phonebook[0].phone;
+				<!-- if have filter, print only suitable names -->
+				pbk_table += '<tr><td>'+name+'</td><td>'+phone+'</td></tr><';
+				pbk_table += '/table>';
+		        document.getElementById('phonebook').innerHTML = pbk_table;
+			};
+	    </script>
+		<div><input type="text" onkeydown="filter(this.value)" onpaste="filter(this.value)" oninput="filter(this.value)"></div>
+		<hr>
+		<div id="phonebook"></div>
+	</body>
 </html>

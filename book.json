@@ -1,7 +1,8 @@
-{
+{ "phonebook": [
   { "name": "aaa1 bbb1", "phone": "1111"},
   { "name": "ccc2 ddd2", "phone": "2222"},
   { "name": "eee3 fff3", "phone": "3333"},
   { "name": "ggg4 hhh4", "phone": "4444"},
   { "name": "iii5 jjj5", "phone": "5555"}
+  ]
 }
